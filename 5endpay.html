@@ -256,56 +256,44 @@
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
-    <style>
-        /* WhatsApp Button Style */
+  <meta charset="UTF-8">
+  <title>Email Us Button</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+    }
 
-        .whatsapp-button {
-            position: fixed;
-            /* Keeps the button fixed while scrolling */
-            left: 10px;
-            /* Adjust the distance from the left side */
-            bottom: 10px;
-            /* Adjust the distance from the bottom */
-            z-index: 1000;
-            /* Ensures the button is above other elements */
-            background-color: #25D366;
-            /* WhatsApp green color */
-            padding: 10px;
-            border-radius: 30px;
-            /* Makes the button circular */
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
-            transition: transform 0.3s ease;
-        }
+    .email-button {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      background-color: darkred;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 5px;
+      text-decoration: none;
+      font-size: 16px;
+      font-family: Arial, sans-serif;
+      z-index: 1000;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+    }
 
-        /* WhatsApp Icon inside the Button */
-
-        .whatsapp-button img {
-            width: 30px;
-            height: 30px;
-        }
-
-        /* Hover effect */
-
-        .whatsapp-button:hover {
-            transform: scale(1.1);
-            /* Slightly enlarge the button on hover */
-        }
-    </style>
+    .email-button:hover {
+      background-color: #a10000;
+    }
+  </style>
 </head>
-
 <body>
- <!-- WhatsApp Button -->
-    <a href="https://wa.me/message/E6TSHPIIATXPG1" target="_blank" class="whatsapp-button" title="Chat with us on WhatsApp">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
-    </a>
 
+  <a href="mailto:officialvideofunds@gmail.com?subject=Support%20Request" class="email-button">
+    Email Us
+  </a>
 
 </body>
+</html>
 
 </html>
 </div>
