@@ -1,0 +1,212 @@
+    <head>
+        <!DOCTYPE html>
+        <html lang="en">
+
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Welcome</title>
+            <style>
+                /* General Styles */
+
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 0;
+                    padding: 0;
+                    background-color: #ff9900;
+                }
+
+                /* Welcome Container */
+
+                .welcome-container {
+                    text-align: center;
+                    background:darkred;
+                    padding: 20px;
+                    border-radius: 8px;
+                    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                    width: 80%;
+                    margin: 20px auto;
+                }
+
+                h1 {
+                    color: #333;
+                }
+
+                .image-container {
+                    text-align: center;
+                    margin-bottom: 20px;
+                }
+
+                .image-container img {
+                    max-width: 100%;
+                    height: auto;
+                    border-radius: 8px;
+                    margin-bottom: 10px;
+                }
+
+                .image-container p {
+                    font-size: 16px;
+                    color: #555;
+                }
+
+                a {
+                    display: inline-block;
+                    margin-top: 20px;
+                    padding: 10px 20px;
+                    background-color: ;
+                    color:darkred;
+                    text-decoration: none;
+                    border-radius: 5px;
+                }
+
+                a:hover {
+                    background-color: ;
+                }
+
+                /* Card Container Styles */
+
+                .card-container {
+                    display: grid;
+                    grid-template-columns: repeat(3, 1fr);
+                    /* Three columns for the cards */
+                    gap: 20px;
+                    padding: 20px;
+                    margin-top: 20px;
+                    margin-bottom: 40px;
+                    /* Added margin-bottom for space before the footer */
+                }
+
+                .Div_card {
+                    background-color: darkred;
+                    border-radius: 15px;
+                    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+                    overflow: hidden;
+                    padding: 20px;
+                    transition: transform 0.3s ease;
+                    color: white;
+                    /* Make text inside the cards white */
+                }
+
+                .Div_card:hover {
+                    transform: translateY(-10px);
+                }
+
+                .img4 img {
+                    width: 100%;
+                    border-radius: 15px;
+                    margin-bottom: 15px;
+                }
+
+                .div_h {
+                    font-size: 20px;
+                    font-weight: bold;
+                    margin-bottom: 15px;
+                }
+
+                .div_ol ol {
+                    list-style-type: decimal;
+                    padding-left: 20px;
+                }
+
+                .div_ol li {
+                    font-size: 16px;
+                    margin: 8px 0;
+                    color: #fff;
+                    /* Ensure list items are also white */
+                }
+
+                /* For smaller screens, stack the cards vertically */
+
+                @media (max-width: 768px) {
+                    .card-container {
+                        grid-template-columns: 1fr;
+                    }
+                }
+
+                /* Information Card Styles */
+
+                .info-card {
+                    background-color: black;
+                    color: white;
+                }
+
+                /* Footer Styles */
+
+                .footer {
+                    background-color: #333;
+                    color: white;
+                    text-align: center;
+                    padding: 20px 0;
+                    /* Added more padding for better spacing */
+                    position: relative;
+                    bottom: 0;
+                    width: 100%;
+                }
+            </style>
+        </head>
+
+        <body>
+
+
+            <!-- Payment Instructions Section -->
+            <h1 style="text-align: center;">.</h1>
+
+            <div class="card-container">
+         
+                <!-- Halotel Pesa Payment Instruction -->
+                <div class="Div_card" style="background-color: #f57922;">
+                    <header class="img4">
+                        <img src="images/halopesa.png" alt="Halo Pesa">
+                    </header>
+                    <div class="div_h">HOW TO PAY THROUGH HALPESA</div>
+                    <div class="div_ol">
+                        <ol type="1">
+                            <li>DIAL *150*88#</li>
+                            <li>CHOOSE: LIPA BIDHAA.</li>
+                            <li>CHOOSE: PAY HALOTEL MERCHANT</li>
+                            <li>ENTER  <b>23513043 </b> IT WILL SHOW NAME <b>(VIDEOFUNDS TOP)</b></li>
+                            <li>ENTER AMOUNT 120,000-/TSH TZS</li>
+                            <li>Enter the PIN to authorize the transaction.</li>
+                        </ol>
+                    </div>
+                </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Email Us Button</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    .email-button {
+      position: fixed;
+      bottom: 400px;
+      left: 250px;
+      background-color: darkred;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 5px;
+      text-decoration: none;
+      font-size: 16px;
+      font-family: Arial, sans-serif;
+      z-index: 1000;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+    }
+
+    .email-button:hover {
+      background-color: #a10000;
+    }
+  </style>
+</head>
+<body>
+
+  <a href="mailto:officialvideofunds@gmail.com?subject=Support%20Request" class="email-button">
+    I have Payed Please Confirm 
+  </a>
+
+</body>
+</html>
