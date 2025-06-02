@@ -171,7 +171,69 @@
                         </ol>
                     </div>
                 </div>
-                
+                      <!-- Notification HTML -->
+<div id="notification" style="
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 9999;
+    background-color: green;
+    color: white;
+    padding: 15px 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    font-family: Arial, sans-serif;
+    display: none;
+    animation: fadeInOut 5s ease-in-out;
+">
+    <strong>Success!</strong><br>
+    <span id="notification-text">Someone just activated!</span>
+</div>
+
+<!-- Animation Keyframes -->
+<style>
+@keyframes fadeInOut {
+    0% {opacity: 0; transform: translateY(-20px);}
+    10% {opacity: 1; transform: translateY(0);}
+    90% {opacity: 1; transform: translateY(0);}
+    100% {opacity: 0; transform: translateY(-20px);}
+}
+</style>
+<script>
+// Sample names and African country flags
+const names = ["Juma", "Aisha", "Kwame", "Fatou", "Ahmed", "Blessing", "Chinedu", "Daniel", "Olivia", "Matthew",
+            "Patrick", "Grace", "Brian", "Linda", "James", "Mary", "Robert", "Jennifer", "John", "Lisa",
+            "William", "Elizabeth", "Joseph", "Susan", "Thomas", "Karen", "Charles", "Nancy", "Christopher", "Betty",
+            "Anthony", "Margaret", "Mark", "Sandra", "Donald", "Ashley", "Steven", "Kimberly", "Paul", "Donna",
+            "Andrew", "Dorothy", "Joshua", "Michelle", "Kenneth", "Carol", "Kevin", "Amanda", "Brian", "Melissa",
+            "George", "Deborah", "Edward", "Stephanie", "Ronald", "Rebecca", "Timothy", "Zanele", "Ibrahim", "Musa"];
+const flags = ["🇹🇿", "🇰🇪", "🇺🇬", "🇳🇬", "🇿🇦", "🇬🇭", "🇪🇹", "🇨🇲", "🇨🇮", "🇸🇳", "🇩🇿", "🇿🇼", "🇲🇦", "🇲🇼", "🇧🇮"];
+
+function showNotification() {
+    const name = names[Math.floor(Math.random() * names.length)];
+    const flag = flags[Math.floor(Math.random() * flags.length)];
+    const text = `${name} from ${flag} just completed activation!`;
+
+    const notification = document.getElementById("notification");
+    const notificationText = document.getElementById("notification-text");
+
+    notificationText.textContent = text;
+    notification.style.display = "block";
+
+    // Restart animation
+    notification.style.animation = "none";
+    void notification.offsetWidth; // Force reflow
+    notification.style.animation = "fadeInOut 5s ease-in-out";
+
+    // Hide after 5s
+    setTimeout(() => {
+        notification.style.display = "none";
+    }, 5000);
+}
+
+// Show notification every 8 seconds
+setInterval(showNotification, 8000);
+</script>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -185,7 +247,7 @@
 
     .email-button {
       position: fixed;
-      bottom: 600px;
+      bottom: 500px;
       left: 250px;
       background-color: darkred;
       color: white;
