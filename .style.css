@@ -40,3 +40,13 @@ p{
 .font1{
   font-size: 10px;
 }
+h5{
+  font-size: 25px;
+  color: darkred;
+}
+h3{
+  color: blue;
+}
+.text-darkfw-semibold{
+  color: darkred;
+}
