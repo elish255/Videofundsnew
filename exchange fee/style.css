@@ -1,5 +1,6 @@
 
 body {
+  background:"images/background.jpg";
   font-family: Arial, sans-serif;
   background-color: ghostwhite;
   display: flex;
@@ -41,6 +42,7 @@ button {
 }
 
    body {
+     background:"images/background.jpg";
      font-family: Arial, sans-serif;
      background-color: #f8f9fa;
    }
