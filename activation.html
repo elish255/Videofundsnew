@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,8 +28,8 @@
         
         body, html {
             height: 100%;
-            font-family: Arial, sans-serif; /* Match withdrawal page */
-            background-color: #f8f9fa; /* Match withdrawal page */
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
         }
         
         body {
@@ -55,7 +54,7 @@
             font-size: 1.3rem;
             display: flex;
             align-items: center;
-            color: blue; /* Match withdrawal page */
+            color: blue;
             text-decoration: none;
         }
 
@@ -71,7 +70,7 @@
         }
 
         .nav-link:hover {
-            color: #00b3b3; /* Match withdrawal page */
+            color: #00b3b3;
         }
 
         .icon {
@@ -307,7 +306,6 @@
             display: none;
         }
 
-        /* New styles for verification section */
         .verification-section {
             display: none;
             background-color: var(--primary-color);
@@ -411,7 +409,6 @@
                 <img src="icons/video.png" alt="Video icon" class="icon">
                 <span>Videofunds</span>
             </a>
-           
         </div>
     </nav>
 
@@ -431,7 +428,7 @@
                     Username
                 </label>
                 <div class="input-with-button">
-                    <input type="text" id="username" placeholder="Enter your username" required pattern="[A-Za-z0-9_]{3,20}" title="Username must be 3-20 characters, letters, numbers, or underscores">
+                    <input type="text" id="username" placeholder="Enter your username (e.g. David John)" required pattern="[A-Za-z0-9_ ]{3,20}" title="Username must be 3-20 characters, letters, numbers, underscores, or spaces">
                     <button type="button" class="copy-btn" id="copyUsernameBtn" aria-label="Copy username">
                         <img src="icons/notes.png" alt="Copy icon">
                         Copy
@@ -512,7 +509,6 @@
         </div>
     </div>
 
-
     <!-- Email Button -->
     <a href="mailto:officialvideofunds@gmail.com?subject=Support%20Request" class="email-button" aria-label="Email us for support">
         <img src="icons/gmail.png" alt="Email" class="icon-sm"> Email Us
@@ -531,12 +527,12 @@
             const formError = document.getElementById("form-error");
 
             // Client-side validation
-            const usernamePattern = /^[A-Za-z0-9- ]{3,20}$/;
+            const usernamePattern = /^[A-Za-z0-9_ ]{3,20}$/;
             const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             const phonePattern = /^\+?\d{10,15}$/;
 
             if (!usernamePattern.test(username)) {
-                formError.textContent = "Username must be 3-20 characters, letters, numbers, or underscores";
+                formError.textContent = "Username must be 3-20 characters, letters, numbers, underscores, or spaces";
                 formError.style.display = "block";
                 document.getElementById("username").focus();
                 return;
@@ -597,7 +593,7 @@
             });
         });
 
-   // Copy username functionality
+           // Copy username functionality
         document.getElementById("copyUsernameBtn").addEventListener("click", async function() {
             const usernameInput = document.getElementById("username");
             const copiedMessage = document.getElementById("copiedMessage");
