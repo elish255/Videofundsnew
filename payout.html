@@ -1,7 +1,6 @@
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -12,320 +11,448 @@
     <meta property="og:type" content="video">
     <meta name="author" content="">
     <title>Choose a system for withdrawing money</title>
-    <script src="js/jquery.min.js"></script>
-    <link rel="stylesheet" href="style.cs">
-    <link rel="stylesheet" href="css/font.css">
-    <link rel="stylesheet" href="css/main.css?rstr=532909801696">
-    <link href="css/business-frontpage.css?rstr=532909801696" rel="stylesheet">
-    <script type="text/javascript" src="js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="js/popper.min.js"></script>
-    <script type="text/javascript" src="js/commonscripts.js"></script>
-    <script type="text/javascript" src="js/geterrorcodes.js?new"></script>
     
     <style>
-    body{
-        background:"images/background.jpg";
-    }
-        html {
+        :root {
+            --primary-color: #68162e;
+            --secondary-color: #c92121;
+            --accent-color: blue;
+            --success-color: #149210;
+        }
+        
+        * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            height: 90%;
-            font-family: Arial, sans-serif;
-            background-color: #d6d1d1;
+        }
+        
+        body, html {
+            height: 100%;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f5f5;
+        }
+
+        /* Background image with overlay */
+        body {
+            background-image: url('images/background.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            position: relative;
+        }
+        
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(104, 22, 46, 0.85) 0%, rgba(201, 33, 33, 0.8) 100%);
+            z-index: -1;
         }
 
         .navbar {
-            background-color: #68162e;
-            
+            background-color: var(--primary-color);
+            padding: 0.8rem 1rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
 
         .navbar-brand {
             font-weight: bold;
-            font-size: 25px;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            color: rgb(255, 255, 255);
+            text-decoration: none;
         }
 
         .navbar-brand span {
-            color: blue;
-            /* Makes "Videofunds Activation" title blue */
-        }
-
-        #activation-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            padding: 20px;
-            text-align: center;
-            color: white;
+            color: var(--accent-color);
+            margin-left: 8px;
         }
 
         .icon {
-            font-size: 100px;
-            color: #51c921;
-            margin-bottom: 20px;
+            width: 24px;
+            height: 24px;
+            object-fit: contain;
+            margin-right: 10px;
         }
-
-        form {
-            background-color: #68162e;
-            padding: 30px;
-            width: 100%;
-            max-width: 400px;
-            border-radius: 8px;
-            box-shadow: 0 4px 10px rgb(255, 255, 255);
+        
+        .header-icon {
+            width: 64px;
+            height: 64px;
+            margin-bottom: 1.5rem;
         }
-
-        form input {
-            width: 90%;
-            padding: 8px 10px;
-            margin: 4px 0;
-            border: 3px solid #e43011;
-            border-radius: 5px;
-            font-size: 10px;
+        
+        .page-header {
+            text-align: center;
+            margin: 2rem 0;
+            color:#18610A;
+            font-weight: bold;
+            font-size: 2rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
         }
-
-        form input:focus {
-            outline: none;
-            border-color: #149210;
-            box-shadow: 0 0 5px rgba(221, 9, 9, 0.3);
+        
+        .payout-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            padding: 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
         }
-
-        .next-button {
-            width: 40%;
-            padding: 4px;
-            background-color: #c92121;
+        
+        .payout-option {
+            background-color: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            padding: 1.5rem;
+            width: 300px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+        
+        .payout-option:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.3);
+        }
+        
+        .payout-image {
+            width: 150px;
+            height: 150px;
+            object-fit: contain;
+            margin-bottom: 1rem;
+        }
+        
+        .payout-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--accent-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        .payout-description {
+            color: #555;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+        
+        .select-button {
+            background-color: var(--secondary-color);
             color: white;
+            padding: 0.8rem 1.5rem;
             border: none;
-            border-radius: 5px;
-            font-size: 18px;
+            border-radius: 20px;
             font-weight: bold;
             cursor: pointer;
             transition: background-color 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
         }
-
-        .next-button:hover {
-            background-color: #19860f;
+        
+        .select-button:hover {
+            background-color: #0c4e08;
+            color: rgb(245, 242, 242);
+            text-decoration: none;
         }
-
-        #loading-icon {
-            display: none;
-            margin-top: 20px;
-            font-size: 24px;
-            color: #c92121;
+        
+      
+        footer {
+            background-color: rgb(0, 0, 0);
+            color: white;
+            text-align: center;
+            padding: 1.5rem;
+            margin-top: 2rem;
+            backdrop-filter: blur(5px);
         }
-    </style>
-
-</head>
-<!-- Global site tag (gtag.js) -https://i.imgur.com/l8qcXqa.png Google Analytics -->
-<!--<script async src="https://www.googletagmanager.com/gtag/js?id=G-N7BJYK4G71"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-N7BJYK4G71');
-</script>-->
-
-<body background="images/background.jpg">
-
-    <nav class="navbar navbar-expand-lg fixed-top">
-        <div class="container">
-            <a class="navbar-brand" href=".https://videofunds.top/">
-                <font class="font9" style="font-weight:bold;font-size:35px;color:blue;">videofunds</font></a>
+        
+        .email-button {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background-color: darkred;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 16px;
+            z-index: 1000;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+        }
+        
+        .email-button:hover {
+            background-color: #a10000;
+            color: white;
+            text-decoration: none;
+        }
+        
+        .email-button img {
+            width: 16px;
+            height: 16px;
+            margin-right: 8px;
+        }
+        
+        .whatsapp-button {
+            position: fixed;
+            left: 20px;
+            bottom: 20px;
+            z-index: 1000;
+            background-color: #25D366;
+            padding: 12px;
+            border-radius: 50%;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+        }
+        
+        .whatsapp-button img {
+            width: 24px;
+            height: 24px;
+        }
+        
+        .whatsapp-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6);
+        }
+        
+        .toast-container {
+            position: fixed;
+            bottom: 100px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1050;
+        }
+        
+        .toast {
+            background-color: ;
+            border-left: 5px solid var(--success-color);
+            border-radius: 5px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+            padding: 1rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            max-width: 400px;
+            animation: slideIn 0.5s forwards;
+        }
+        
+        .toast-icon {
+            width: 24px;
+            height: 24px;
+            margin-right: 10px;
+            color: var(--success-color);
+        }
+        
+        .toast-content {
+            flex: 1;
+        }
+        
+        .toast-title {
+            font-weight: bold;
+            color: var(--success-color);
+            margin-bottom: 0.25rem;
+        }
+        
+        .toast-message {
+            color: #333;
+            font-size: 0.9rem;
+        }
+        
+        .toast-close {
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            color: #999;
+        }
+        
+        @keyframes slideIn {
+            from {
+                transform: translate(-50%, 100px);
+                opacity: 0;
+            }
+            to {
+                transform: translate(-50%, 0);
+                opacity: 1;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .payout-container {
+                flex-direction: column;
+                align-items: center;
+            }
             
-            </div>
-          
-                    </li>
-
-
-                    
-                    </li>
-
-                </ul>
-            </div>
-        </div>
-    </nav>
-    <style>
-        .valname {
-            font-size: 18px;
-            font-weight: bold;
-            color: #533651;
-        }
-
-        .valval {
-            font-size: 22px;
-            font-weight: bold;
-            color: blue;
+            .payout-option {
+                width: 100%;
+                max-width: 300px;
+            }
+            
+            .page-header {
+                font-size: 1.5rem;
+            }
+            
+            .social-icons {
+                flex-wrap: wrap;
+            }
         }
     </style>
-    <!-- Header -->
-  <center>  <header class="py-1 mb-1 mt-3">
-        <div class="container h-100">
-            <div class="row h-100 align-items-center">
-                <div class="col-lg-12 mt-0 text-center">
-                    <font class="font9" style="font-size:2rem;font-weight:bold;color:#18610A;">Choose a system for withdrawing money</font>
-                </div>
-            </div>
+</head>
+
+<body>
+    <!-- Navbar -->
+     
+    <nav class="navbar">
+        <a class="navbar-brand" href="./">
+            <img src="icons/video.png" alt="Video" class="icon">
+            <span>Videofunds</span>
+        </a>
+        
+    </nav>
+
+    <!-- Page Header -->
+    <h1 class="page-header">Choose a system for withdrawing money</h1>
+
+    <!-- Payout Options -->
+    <div class="payout-container">
+        <div class="payout-option">
+            <img src="images/card.png" alt="Bank Card" class="payout-image">
+            <div class="payout-title">To a bank card</div>
+            
+            <a class='select-button' href='/pay.html'>Select</a>
         </div>
-    </header>
-
-    <!-- Page Content -->
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4 text-right text-center mb 100">
-                <a href="pay.html"><img src="images/card.png" alt="To a bank card" class="img-thumbnail" style="max-width:200px;"></a><br>
-                <a href="pay.html">
-                    <font class="font1" style="font-size:1rem;font-weight:bold;color:blue;">To a bank card</font>
-                </a>
-            </div>
-            <div class="col-md-4 text-right text-center mb-2">
-                <a href="pay.html"><img src="images/phone.png" alt="To phone bill" class="img-thumbnail" style="max-width:200px;"></a><br>
-                <a href="pay.html">
-                    <font class="font1" style="font-size:1rem;font-weight:bold;color:blue;">To phone bill</font>
-                </a>
-            </div>
-            </center>
-            <br>
-
-
-
+        
+        <div class="payout-option">
+            <img src="images/phone.png" alt="Phone Bill" class="payout-image">
+            <div class="payout-title">To phone bill</div>
+           
+            <a class='select-button' href='/paynext.html'>Select</a>
         </div>
     </div>
+
+
     <!-- Footer -->
-    <div id='share_word' style="display:none">sign up to get a 10 US Dollar newcomer bonus! I made more than 200 US Dollars by watching the video here, so you can try it.</div>
-    <div id='warning_reg' style="display:none">Warning! You are suspected of malicious registration, continue to operate will block your account.</div>
-    <div id='paym1' style="display:none">New Payment Sent:</div>
-    <div id='paym2' style="display:none">was just paid</div>
-    <div id='paym3' style="display:none">via</div>
-    <div style="height:140px;width:100%">
-        <center>
-            <div style="width:85%"><b>Invite friends to help you earn money and get an extra 40% of your friends income!</b></div>
-            <table>
-                <tr>
-                    <td><a href='javascript:share_wa()'><img src='images/wa.jpg' style="width:60px" border=0></a></td>
-
-                    <td><a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fvideofunds.top%2F%2F&amp;quote=Join now to receive a $10 welcome bonus! I've earned over $200 just by watching videos here, so come on!" target="_blank"><img src='images/fb.jpg' style="width:60px" border=0></a></td>
-                    <td><a href='javascript:share_ms()'><img src='images/ms.jpg' style="width:60px" border=0></a></td>
-                    <td><a href='javascript:share_tg()'><img src='images/tg.jpg'  style="width:60px" border=0></a></td>
-                    <td><a href='javascript:share_twitter()'><img src='images/twitter.png' style="width:60px" border=0></a></td>
-                    <td><a href='javascript:share_line()'><img src='images/line.jpg'  style="width:60px" border=0></a></td>
-
-                </tr>
-            </table>
-            <div id='share'><label class="font9 valname" style="font-weight:bold;"><span style="color:#E53333;">Click the button above to share with your friends</span></label>
-
-            </div>
-
-        </center>
-    </div>
+    <footer>
+        <p>Copyright &copy; videofunds.homes 2007-2025</p>
+    </footer>
 
 
+
+    <!-- Email Button -->
+      <a href="mailto:officialvideofunds@gmail.com?subject=Support%20Request" class="email-button" aria-label="Email us for support">
+        <img src="icons/gmail.png" alt="Email" class="icon-sm"> Email Us
+    </a>
+
+    <!-- Toast Container -->
+    <div class="toast-container" id="toastContainer"></div>
 
     <script>
+        // Function to show toast notification
+        function showToast(name, amount, method) {
+            const toastContainer = document.getElementById('toastContainer');
+            const toast = document.createElement('div');
+            toast.className = 'toast';
+            toast.innerHTML = `
+                <div class="toast-icon">
+                    <img src="icons/media.png" alt="Success" width="24" height="24">
+                </div>
+                <div class="toast-content">
+                    <div class="toast-title">New Payment Sent:</div>
+                    <div class="toast-message">${name} was just paid $${amount} via ${method}!</div>
+                </div>
+                <button class="toast-close">&times;</button>
+            `;
+            
+            toastContainer.appendChild(toast);
+            
+            // Add event listener to close button
+            toast.querySelector('.toast-close').addEventListener('click', function() {
+                toast.style.animation = 'slideOut 0.5s forwards';
+                setTimeout(() => {
+                    toastContainer.removeChild(toast);
+                }, 500);
+            });
+            
+            // Auto remove after 3 seconds
+            setTimeout(() => {
+                if (toast.parentNode === toastContainer) {
+                    toast.style.animation = 'slideOut 0.5s forwards';
+                    setTimeout(() => {
+                        toastContainer.removeChild(toast);
+                    }, 500);
+                }
+            }, 3000);
+        }
+        
+        // Function to generate random payment notifications
+        function generateRandomPayment() {
+            const names = ['John Smith', 'Emma Johnson', 'Michael Williams', 'Sarah Brown', 'David Jones', 'Jessica Garcia', 'James Miller', 'Jennifer Davis'];
+            const methods = ['Visa', 'MasterCard', 'PayPal', 'Bank Transfer', 'Google Pay'];
+            
+            const randomName = names[Math.floor(Math.random() * names.length)];
+            const randomAmount = Math.floor(Math.random() * 2000 + 500); // $500 to $2500
+            const randomMethod = methods[Math.floor(Math.random() * methods.length)];
+            
+            showToast(randomName, randomAmount.toLocaleString(), randomMethod);
+        }
+        
+        // Start generating random payments
+        setTimeout(() => {
+            generateRandomPayment();
+            setInterval(generateRandomPayment, Math.floor(Math.random() * 20000 + 30000)); // 30-50 seconds
+        }, Math.floor(Math.random() * 10000 + 5000)); // 5-15 seconds
+        
+        // Social sharing functions (placeholder implementations)
         function share_wa() {
-            // sharetime();
-            record('video', 'share_wa');
-            locaion.href = "whatsapp://send?text=" + document.getElementById('share_word').innerHTML + " https://videofunds.top//";
+            const text = "Sign up to get a 10 US Dollar newcomer bonus! I made more than 200 US Dollars by watching the video here, so you can try it.";
+            window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
         }
-
+        
         function share_ms() {
-            //  sharetime();
-            record('video', 'share_ms');
-            location.href = "fb-messenger://share/?link=" + encodeURIComponent("https://videofunds.top//");
+            alert("Messenger sharing would be implemented here");
         }
-
+        
         function share_tg() {
-            //   sharetime();
-            record('video', 'share_tg');
-            location.href = "tg://msg_url?url=" + document.getElementById('share_word').innerHTML + " https://videofunds.top//";
+            alert("Telegram sharing would be implemented here");
         }
-
-        function share_line() {
-            //  sharetime();
-            record('video', 'share_line');
-            location.href = "line://msg/text/" + document.getElementById('share_word').innerHTML + " https://videofunds.top//";
-        }
-
+        
         function share_twitter() {
-            //  sharetime();
-            record('video', 'share_twitter');
-            location.href = "https://twitter.com/intent/tweet/?text=" + document.getElementById('share_word').innerHTML + "&url=" + " https://videofunds.top//";
+            const text = "Sign up to get a 10 US Dollar newcomer bonus! I made more than 200 US Dollars by watching the video here, so you can try it.";
+            window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`, '_blank');
         }
+        
+        function share_line() {
+            alert("Line sharing would be implemented here");
+        }
+        
+        // Add CSS for slideOut animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideOut {
+                from {
+                    transform: translate(-50%, 0);
+                    opacity: 1;
+                }
+                to {
+                    transform: translate(-50%, 100px);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
     </script>
-          <!-- Notification HTML -->
-<div id="notification" style="
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    z-index: 9999;
-    background-color: green;
-    color: white;
-    padding: 15px 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-    font-family: Arial, sans-serif;
-    display: none;
-    animation: fadeInOut 5s ease-in-out;
-">
-    <strong>Success!</strong><br>
-    <span id="notification-text">Someone just activated!</span>
-</div>
-
-<!-- Animation Keyframes -->
-<style>
-@keyframes fadeInOut {
-    0% {opacity: 0; transform: translateY(-20px);}
-    10% {opacity: 1; transform: translateY(0);}
-    90% {opacity: 1; transform: translateY(0);}
-    100% {opacity: 0; transform: translateY(-20px);}
-}
-</style>
-<script>
-// Sample names and African country flags
-const names = ["Juma", "Aisha", "Kwame", "Fatou", "Ahmed", "Blessing", "Chinedu", "Daniel", "Olivia", "Matthew",
-            "Patrick", "Grace", "Brian", "Linda", "James", "Mary", "Robert", "Jennifer", "John", "Lisa",
-            "William", "Elizabeth", "Joseph", "Susan", "Thomas", "Karen", "Charles", "Nancy", "Christopher", "Betty",
-            "Anthony", "Margaret", "Mark", "Sandra", "Donald", "Ashley", "Steven", "Kimberly", "Paul", "Donna",
-            "Andrew", "Dorothy", "Joshua", "Michelle", "Kenneth", "Carol", "Kevin", "Amanda", "Brian", "Melissa",
-            "George", "Deborah", "Edward", "Stephanie", "Ronald", "Rebecca", "Timothy", "Zanele", "Ibrahim", "Musa"];
-const flags = ["🇹🇿", "🇰🇪", "🇺🇬", "🇳🇬", "🇿🇦", "🇬🇭", "🇪🇹", "🇨🇲", "🇨🇮", "🇸🇳", "🇩🇿", "🇿🇼", "🇲🇦", "🇲🇼", "🇧🇮"];
-
-function showNotification() {
-    const name = names[Math.floor(Math.random() * names.length)];
-    const flag = flags[Math.floor(Math.random() * flags.length)];
-    const text = `${name} from ${flag} just completed activation!`;
-
-    const notification = document.getElementById("notification");
-    const notificationText = document.getElementById("notification-text");
-
-    notificationText.textContent = text;
-    notification.style.display = "block";
-
-    // Restart animation
-    notification.style.animation = "none";
-    void notification.offsetWidth; // Force reflow
-    notification.style.animation = "fadeInOut 5s ease-in-out";
-
-    // Hide after 5s
-    setTimeout(() => {
-        notification.style.display = "none";
-    }, 5000);
-}
-
-// Show notification every 8 seconds
-setInterval(showNotification, 8000);
-</script>
-
-   <center> <footer style="background-color: dimgray;" >
-    
-        
-        
-        <br>
-        <div class="container">
-            <p class="footer">Copyright &copy; videofunds.top 2007-2025</p>
-        </div>
-    </footer>
-    </center>
-    
-    
-    
+</body>
+</html>

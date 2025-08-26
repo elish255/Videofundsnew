@@ -1,119 +1,587 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
- <meta charset="utf-8">
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta property="og:image" content="https://videofunds.top/images/2.png">
     <meta property="og:title" content="Get paid to enjoy videos 🎥">
     <meta property="og:description" content="Earn $0.60 for every minute you spend watching!">
     <meta property="og:url" content="https://youtube.com">
-     <meta name="google-site-verification" content="IE7_s20VEiqnchV1_r2L5IVXDB0UUO6Hk9RHf9S2m3c" />
     <meta property="og:type" content="video">
-    <meta name="author" content="">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="..style.css"
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-     <title>Videofunds Activation and Withdrawal</title>
-    
-   
+    <meta name="google-site-verification" content="IE7_s20VEiqnchV1_r2L5IVXDB0UUO6Hk9RHf9S2m3c" />
+    <meta name="author" content="Videofunds">
+    <title>Videofunds Activation and Withdrawal</title>
+
     <style>
-        body {
-            background="background.jpg"
-            background-color: #f4f4f4;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        .header {
-            background: #600020;
-            color: white;
-           font-size: 25px;
-            padding: 20px;
-        }
-        .time-card {
-            display: inline-flex;
-            align-items: center;
-            background: white;
-            padding: 8px 15px;
-            border-radius: 30px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            font-size: 14px;
-        }
-        .activation-card {
-            background: #600020;
-            color: white;
-            border-radius: 16px;
-            padding: 25px;
-            max-width: 400px;
-            margin: auto;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-        }
-        .notification {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: green;
-            color: white;
-            padding: 15px 20px;
-            border-radius: 12px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-            display: none;
-            z-index: 1000;
-        }
-        .notification.show {
-            display: block;
-            animation: fadeInOut 5s ease-in-out;
-        }
-        @keyframes fadeInOut {
-            0% { opacity: 0; transform: translateY(-20px); }
-            10%, 90% { opacity: 1; transform: translateY(0); }
-            100% { opacity: 0; transform: translateY(-20px); }
+        :root {
+            --primary-color: #68162e;
+            --secondary-color: #c7121b;
+            --accent-color: blue;
+            --success-color: #0d8832;
+            --text-light: #ffffff;
+            --text-dark: #333333;
         }
         
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body, html {
+            height: 100%;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            background:linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%) ;
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+         /* Background image with overlay */
+        body {
+            background-image: url('images/background.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            position: relative;
+        }
+        .navbar {
+            background-color: var(--primary-color);
+            padding: 0.8rem 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar-brand {
+            font-weight: bold;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: white;
+            text-decoration: none;
+        }
+
+        .navbar-brand span {
+            color: var(--accent-color);
+        }
+
         .icon {
-            font-size: 80px;
-            color: blue ;
-            margin-bottom: 20px;
+            width: 24px;
+            height: 24px;
+            object-fit: contain;
+        }
+        
+        .icon-sm {
+            width: 18px;
+            height: 18px;
+            
+        }
+        
+        #home-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 1.5rem 1rem;
+            text-align: center;
+            min-height: calc(100vh - 60px);
         }
 
         .global-icon {
-            font-size: 70px;
-            color: blue;
-            margin-bottom: 30px;
-            transition: transform 0.5s ease;
+            width: 60px;
+            height: 60px;
+            margin-bottom: 1.2rem;
         }
 
-        .global-icon:hover {
-            transform: rotate(15deg) scale(1.1);
+        h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-weight: 600;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        p {
+            color: var(--text-dark);
+            max-width: 100%;
+            margin: 0 auto 1.2rem;
+            line-height: 1.5;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        form {
+            background-color: var(--primary-color);
+            padding: 1.2rem;
+            width: 100%;
+            max-width: 380px;
+            border-radius: 10px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.12);
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+        }
+
+        form label {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 0.4rem;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        form input, form select {
+            width: 100%;
+            padding: 0.8rem;
+            margin: 0.4rem 0;
+            border: 1px solid #dddddd;
+            border-radius: 6px;
+            font-size: 0.9rem;
+        }
+
+        form input:focus, form select:focus {
+            outline: none;
+            border-color: var(--secondary-color);
+            box-shadow: 0 0 0 2px rgba(199, 18, 27, 0.2);
+        }
+
+        .next-button {
+            width: 100%;
+            padding: 0.8rem;
+            background-color: var(--secondary-color);
+            color: var(--text-light);
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 1.2rem;
+        }
+
+        .next-button:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+
+        .loading-spinner {
+            display: none;
+            margin: 1.2rem auto;
+            text-align: center;
+        }
+        
+        .spinner {
+            width: 30px;
+            height: 30px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: #ffffff;
+            animation: spin 1s ease-in-out infinite;
+            margin: 0 auto;
+        }
+        
+        .loading-text {
+            color: white;
+            margin-top: 0.6rem;
+            font-size: 0.85rem;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        select {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="%2368162e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>') no-repeat scroll right 12px center;
+            background-color: #f8f9fa;
+            padding-right: 35px;
+        }
+
+        #real-time-clock {
+            background-color: #ffffff;
+            padding: 0.6rem 1rem;
+            border-radius: 25px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin: 1rem 0;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.07);
+            color: var(--text-dark);
+            font-size: 0.85rem;
+            font-weight: 500;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .notification {
+            position: fixed;
+            top: 15px;
+            right: 15px;
+            padding: 12px 16px;
+            background-color: var(--success-color);
+            color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            z-index: 1000;
+            transform: translateX(120%);
+            transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            max-width: 280px;
+        }
+        
+        .notification.show {
+            transform: translateX(0);
+        }
+        
+        .profile-icon {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: rgba(255,255,255,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        
+        .notification-queue {
+            position: fixed;
+            bottom: 70px;
+            right: 15px;
+            background-color: white;
+            padding: 6px 10px;
+            border-radius: 18px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            font-size: 12px;
+            color: var(--text-dark);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            z-index: 999;
+        }
+
+        .whatsapp-button {
+            position: fixed;
+            left: 12px;
+            bottom: 12px;
+            z-index: 1000;
+            background-color: #25D366;
+            padding: 10px;
+            border-radius: 50%;
+            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.25);
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+        }
+        
+        .whatsapp-button img {
+            width: 22px;
+            height: 22px;
+        }
+        
+        .email-button {
+            position: fixed;
+            bottom: 12px;
+            left: 20px;
+            background-color: #dc2626;
+            color: white;
+            padding: 8px 14px;
+            border: none;
+            border-radius: 45px;
+            text-decoration: none;
+            font-size: 12px;
+            z-index: 1000;
+            box-shadow: 0 3px 10px rgba(220, 38, 38, 0.25);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .stats-container {
+            display: flex;
+            justify-content: space-around;
+            gap: 0.6rem;
+            margin: 1.2rem 0;
+            width: 100%;
+            max-width: 380px;
+        }
+
+        .stat-item {
+            background: white;
+            padding: 0.6rem;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.07);
+            text-align: center;
+            flex: 1;
+        }
+
+        .stat-number {
+            font-size: 1rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 0.2rem;
+        }
+
+        .stat-label {
+            font-size: 0.65rem;
+            color: var(--text-dark);
+        }
+
+        .features {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            margin: 1.2rem 0;
+            width: 100%;
+            max-width: 380px;
+        }
+
+        .feature {
+            background: white;
+            padding: 1rem;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.07);
+            text-align: center;
+        }
+
+        .feature-icon {
+            width: 40px;
+            height: 40px;
+            margin: 0 auto 0.6rem;
+            object-fit: contain;
+        }
+
+        .feature h4 {
+            margin-bottom: 0.4rem;
+            color: var(--primary-color);
+            font-size: 0.9rem;
+        }
+
+        .feature p {
+            font-size: 0.85rem;
+            margin-bottom: 0;
+            justify-content: center;
+        }
+
+        .footer {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1.2rem 1rem;
+            text-align: center;
+            margin-top: 1.5rem;
+            font-size: 0.85rem;
+        }
+
+        .footer p {
+            color: white !important;
+            margin-bottom: 0.4rem;
+            justify-content: center;
+        }
+
+        .footer a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 0.4rem;
+            font-size: 0.75rem;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 5px;
+            background-color: #e9ecef;
+            border-radius: 3px;
+            margin-top: 0.8rem;
+            overflow: hidden;
+            display: none;
+        }
+        
+        .progress {
+            height: 100%;
+            background-color: var(--success-color);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+        
+        .country-flag {
+            display: inline-block;
+            width: 18px;
+            height: 13px;
+            background-size: cover;
+            margin-right: 6px;
+            vertical-align: middle;
+            border-radius: 2px;
+        }
+        
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            margin-left: 4px;
+        }
+        
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 180px;
+            background-color: #555;
+            color: #fff;
+            text-align: center;
+            border-radius: 5px;
+            padding: 4px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -90px;
+            opacity: 0;
+            transition: opacity 0.2s;
+            font-size: 11px;
+        }
+        
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        @media (max-width: 350px) {
+            .navbar-brand {
+                font-size: 1rem;
+            }
+            
+            form {
+                padding: 1rem;
+            }
+            
+            .global-icon {
+                width: 50px;
+                height: 50px;
+            }
+            
+            h3 {
+                font-size: 1.1rem;
+            }
+            
+            #real-time-clock {
+                font-size: 0.75rem;
+                padding: 0.5rem 0.8rem;
+            }
+            
+            .stats-container {
+                flex-direction: column;
+            }
+            
+            .email-button {
+                bottom: 60px;
+                font-size: 11px;
+                padding: 6px 10px;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .navbar {
+                padding: 0.8rem 1.5rem;
+            }
+            
+            #home-container {
+                padding: 1.5rem;
+            }
+            
+            .features {
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .feature {
+                flex: 1;
+                min-width: 180px;
+                max-width: 200px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
         }
     </style>
 </head>
-<body background="images/background.jpg"> 
-    <div class="header text-left">
-        <h3><i class="fas fa-video"></i> Videofunds Activation and Withdrawal</h3>
-    </div>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
 
-    <div class="container text-center mt-5">
-        <div class="mb-3">
-            <div class="time-card">
-                <span id="time-display"></span> &nbsp; | &nbsp; <span id="date-display"></span>
+<body>
+    <nav class="navbar">
+        <a class="navbar-brand" href="./">
+            <img src="icons/video.png" alt="Video" class="icon">
+            <span>Videofunds Activation</span>
+        </a>
+    </nav>
+
+    <div id="home-container">
+        <img src="icons/global.png" alt="Globe" class="global-icon">
+        
+        <h3><img src="icons/media.png" alt="Check" class="icon"> Welcome to official Videofunds Activation</h3>
+        
+        <div class="stats-container">
+            <div class="stat-item">
+                <div class="stat-number" id="total-users">12,589</div>
+                <div class="stat-label">Active Users</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" id="total-payouts">$3,094,286,7.09</div>
+                <div class="stat-label">Total Paid Out</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" id="active-countries">24</div>
+                <div class="stat-label">Countries</div>
             </div>
         </div>
         
-<div class="container" id="home-container">
-        <i class="fas fa-globe global-icon animate__animated animate__pulse animate__infinite"></i></div>
-        <h5><i class="text-dark fw-semibold"></i>Welcome to Videofunds Activation</h5>
-        <p class="text-secondary"><i class="fas fa-info-circle text-primary"></i> Please select your country to proceed with the activation and withdrawal process.</p>
+        <div id="real-time-clock">
+            <img src="icons/clock.png" alt="Clock" class="icon-sm"> 
+            <span id="time-display"></span> | 
+            <span id="date-display"></span>
+            <img src="icons/calender.png" alt="Calendar" class="icon-sm">
+        </div>
+        
+        <p><img src="icons/info.png" alt="Info" class="icon-sm"> Please select your country to proceed with the activation and withdrawal process.</p>
 
-        <form id="country-form" class="activation-card mt-3">
-            <div class="mb-3">
-                <label class="form-label"><i class="fas fa-flag"></i> African Countries Only</label>
-                <select class="form-select" id="country" required>
-               <option value="">Select your country</option>
+        <div class="features">
+            <div class="feature">
+                <img src="icons/shield.png" alt="Secure" class="feature-icon">
+                <h4>Secure</h4>
+                <p>Your data and earnings are protected</p>
+            </div>
+        </div>
+
+        <form id="country-form">
+            <label for="country">
+                <img src="icons/flag.png" alt="Flag" class="icon"> African Countries Only
+                <span class="tooltip">
+                    <img src="icons/help.png" alt="Help" class="icon-sm">
+                    <span class="tooltiptext">Currently available only in African countries. More regions coming soon!</span>
+                </span>
+            </label>
+            <select id="country" required aria-required="true" aria-label="Select your country">
+                <option value="">Select your country</option>
                 <option value="Tanzania">🇹🇿 Tanzania</option>
                 <option value="Kenya">🇰🇪 Kenya</option>
                 <option value="Uganda">🇺🇬 Uganda</option>
@@ -130,148 +598,209 @@
                 <option value="Malawi">🇲🇼 Malawi</option>
                 <option value="Burundi">🇧🇮 Burundi</option>
             </select>
-                </select>
+
+            <button id="continueBtn" type="submit" class="next-button">
+                Continue <img src="icons/right-arrow.png" alt="Arrow" class="icon">
+            </button>
+
+            <div class="progress-bar" id="progress-bar">
+                <div class="progress" id="progress"></div>
             </div>
-            <button type="submit" class="btn btn-danger w-100" id="continueBtn">Continue <i class="fas fa-arrow-right"></i></button>
-            <div id="loading-icon" class="text-center mt-2" style="display:none;">
-                <i class="fas fa-spinner fa-spin"></i> Processing...
+
+            <div id="loading-spinner" class="loading-spinner">
+                <div class="spinner"></div>
+                <div class="loading-text">Processing your request...</div>
             </div>
         </form>
     </div>
-        <!-- Script for Form Submission and Auto-Redirect -->
-    <script>
-        document.getElementById("country-form").addEventListener("submit", function(event) {
-            event.preventDefault(); // Prevent form submission
 
-            // Show loading icon
-            document.getElementById("loading-icon").style.display = "block";
+    <footer class="footer">
+        <p>&copy; 2023 Videofunds Activation Africa. All rights reserved.</p>
+        <div style="margin-top: 0.6rem;">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+            <a href="#">Contact Us</a>
+        </div>
+    </footer>
 
-            // Redirect to activation.html after 2 seconds
-            setTimeout(function() {
-                const selectedCountry = encodeURIComponent(document.getElementById("country").value);
-
-                window.location.href = `2activation.html?country=${selectedCountry}`;
-            }, 2000); // 2 seconds delay
-        });
-    </script>
-
-    <div class="notification" id="notification">
-        <strong>Success!</strong> <span id="notification-text"></span>
+    <div id="notification" class="notification" role="alert" aria-live="polite">
+        <div class="profile-icon">
+            <img src="icons/working.png" alt="User" class="icon">
+        </div>
+        <div>
+            <div style="font-weight: 600; font-size: 14px;">Success!</div>
+            <span id="notification-text"></span>
+        </div>
+    </div>
+    <div class="notification-queue" id="queue-count">
+        <img src="icons/working.png" alt="Users" class="icon-sm"> <span>0</span> activations today
     </div>
 
+    <a href="mailto:officialvideofunds@gmail.com?subject=Support%20Request" class="email-button" aria-label="Email us for support">
+        <img src="icons/gmail.png" alt="Email" class="icon-sm"> Email Us
+    </a>
+
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
+        document.addEventListener('DOMContentLoaded', function() {
+            animateValue('total-users', 0,142867.09 , 2000);
+            animateValue('total-payouts', 0, 30942867.09, 2500);
+            animateValue('active-countries', 0, 24, 1500);
+            
+            document.getElementById("country-form").addEventListener("submit", function(event) {
+                event.preventDefault();
+                
+                const countrySelect = document.getElementById("country");
+                if (!countrySelect.value) {
+                    showTemporaryMessage('Please select your country', 'error');
+                    countrySelect.focus();
+                    return;
+                }
+
+                const loadingSpinner = document.getElementById("loading-spinner");
+                const continueBtn = document.getElementById("continueBtn");
+                const progressBar = document.getElementById("progress-bar");
+                const progress = document.getElementById("progress");
+                
+                continueBtn.disabled = true;
+                continueBtn.innerHTML = 'Processing...';
+                loadingSpinner.style.display = "block";
+                progressBar.style.display = "block";
+
+                let width = 0;
+                const interval = setInterval(() => {
+                    if (width >= 100) {
+                        clearInterval(interval);
+                    } else {
+                        width += 5;
+                        progress.style.width = width + '%';
+                    }
+                }, 200);
+
+                setTimeout(function() {
+                    loadingSpinner.style.display = "none";
+                    progressBar.style.display = "none";
+                    continueBtn.disabled = false;
+                    continueBtn.innerHTML = 'Continue <img src="icons/right-arrow.png" alt="Arrow" class="icon">';
+                    const selectedCountry = encodeURIComponent(countrySelect.value);
+                    window.location.href = `activation.html?country=${selectedCountry}`;
+                }, 4000);
+            });
+
             function updateClock() {
                 const now = new Date();
                 const timeString = now.toLocaleTimeString('en-US', {
-                    hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    second: '2-digit',
+                    hour12: true
                 });
+                
                 const dateString = now.toLocaleDateString('en-US', {
-                    weekday: 'short', year: 'numeric', month: 'short', day: 'numeric'
+                    weekday: 'short',
+                    year: 'numeric',
+                    month: 'short',
+                    day: 'numeric'
                 });
+                
                 document.getElementById('time-display').textContent = timeString;
                 document.getElementById('date-display').textContent = dateString;
             }
+
             updateClock();
             setInterval(updateClock, 1000);
 
-            document.getElementById("country-form").addEventListener("submit", function(event) {
-                event.preventDefault();
-                const loadingIcon = document.getElementById("loading-icon");
-                const continueBtn = document.getElementById("continueBtn");
-                continueBtn.disabled = true;
-                continueBtn.innerHTML = 'Processing <i class="fas fa-cog fa-spin"></i>';
-                loadingIcon.style.display = "block";
-                setTimeout(function() {
-                    const selectedCountry = encodeURIComponent(document.getElementById("country").value);
-                    window.location.href = `2activation.html?country=${selectedCountry}`;
-                }, 8000);
-            });
-
-            const names = [
-            "Juma", "Alex", "Sarah", "Michael", "Emily", "David", "Jessica", "Daniel", "Olivia", "Matthew",
-            "Patrick", "Grace", "Brian", "Linda", "James", "Mary", "Robert", "Jennifer", "John", "Lisa",
-            "William", "Elizabeth", "Joseph", "Susan", "Thomas", "Karen", "Charles", "Nancy", "Christopher", "Betty",
-            "Anthony", "Margaret", "Mark", "Sandra", "Donald", "Ashley", "Steven", "Kimberly", "Paul", "Donna",
-            "Andrew", "Dorothy", "Joshua", "Michelle", "Kenneth", "Carol", "Kevin", "Amanda", "Brian", "Melissa",
-            "George", "Deborah", "Edward", "Stephanie", "Ronald", "Rebecca", "Timothy", "Laura", "Jason", "Sharon",
-            "Jeffrey", "Cynthia", "Ryan", "Kathleen", "Jacob", "Helen", "Gary", "Amy", "Nicholas", "Angela",
-            "Eric", "Shirley", "Stephen", "Anna", "Jonathan", "Brenda", "Larry", "Pamela", "Justin", "Nicole",
-            "Scott", "Emma", "Brandon", "Samantha", "Benjamin", "Katherine", "Samuel", "Christine", "Gregory", "Debra",
-            "Alexander", "Rachel", "Frank", "Carolyn", "Patrick", "Janet", "Raymond", "Catherine", "Jack", "Maria",
-            "Dennis", "Heather", "Jerry", "Diane", "Tyler", "Ruth", "Aaron", "Julie", "Jose", "Olivia",
-            "Henry", "Joyce", "Adam", "Virginia", "Douglas", "Victoria", "Nathan", "Kelly", "Peter", "Lauren",
-            "Zachary", "Christina", "Kyle", "Joan", "Walter", "Evelyn", "Harold", "Judith", "Jeremy", "Megan",
-            "Ethan", "Cheryl", "Carl", "Andrea", "Keith", "Hannah", "Roger", "Martha", "Gerald", "Jacqueline",
-            "Christian", "Frances", "Terry", "Gloria", "Sean", "Ann", "Arthur", "Teresa", "Austin", "Kathryn",
-            "Noah", "Sara", "Lawrence", "Janice", "Jesse", "Jean", "Joe", "Alice", "Bryan", "Madison",
-            "Billy", "Doris", "Jordan", "Abigail", "Albert", "Julia", "Dylan", "Judy", "Bruce", "Grace",
-            "Willie", "Denise", "Gabriel", "Amber", "Alan", "Marilyn", "Juan", "Beverly", "Logan", "Danielle",
-            "Wayne", "Theresa", "Ralph", "Sophia", "Roy", "Marie", "Eugene", "Diana", "Randy", "Brittany",
-            "Vincent", "Natalie", "Russell", "Isabella", "Louis", "Charlotte", "Philip", "Rose", "Bobby", "Alexis",
-            "Johnny", "Kayla", "Bradley", "Hailey", "Howard", "Sydney", "Ethan", "Taylor", "Craig", "Ava"
-        ];
-            const countries = ["🇹🇿", "🇰🇪", "🇺🇬", "🇧🇮", "🇿🇦", "🇳🇬", "🇬🇭", "🇪🇹", "🇨🇲", "🇨🇮", "🇸🇳", "🇩🇿", "🇿🇼", "🇲🇦", "🇲🇼"];
-
-
-            function showNotification() {
-                const notification = document.getElementById('notification');
-                const notificationText = document.getElementById('notification-text');
-                const name = names[Math.floor(Math.random() * names.length)];
-                const countryFlag = countries[Math.floor(Math.random() * countries.length)];
-                notificationText.textContent = `${name} from ${countryFlag} just completed activation!`;
-                notification.classList.add('show');
-                setTimeout(() => {
-                    notification.classList.remove('show');
-                }, 5000);
+            function animateValue(id, start, end, duration) {
+                const obj = document.getElementById(id);
+                let startTimestamp = null;
+                const step = (timestamp) => {
+                    if (!startTimestamp) startTimestamp = timestamp;
+                    const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                    const value = Math.floor(progress * (end - start) + start);
+                    
+                    if (id === 'total-payouts') {
+                        obj.innerHTML = '$' + value.toLocaleString();
+                    } else {
+                        obj.innerHTML = value.toLocaleString();
+                    }
+                    
+                    if (progress < 1) {
+                        window.requestAnimationFrame(step);
+                    }
+                };
+                window.requestAnimationFrame(step);
             }
 
-            setInterval(showNotification, 10000);
+            function showTemporaryMessage(message, type = 'success') {
+                const notification = document.getElementById('notification');
+                const notificationText = document.getElementById('notification-text');
+                
+                notificationText.textContent = message;
+                if (type === 'error') {
+                    notification.style.backgroundColor = '#dc2626';
+                } else {
+                    notification.style.backgroundColor = '#0d8832';
+                }
+                
+                notification.classList.add('show');
+                
+                setTimeout(() => {
+                    notification.classList.remove('show');
+                }, 3000);
+            }
         });
+
+        const names = [
+            "Juma", "Alex", "Sarah", "Michael", "Emily", "David", "Jessica", "Daniel", "Olivia", "Matthew",
+            "Patrick", "Grace", "Brian", "Linda", "James", "Mary", "Robert", "Jennifer", "John", "Lisa"
+        ];
+
+        const notification = document.getElementById('notification');
+        const notificationText = document.getElementById('notification-text');
+        const queueCount = document.getElementById('queue-count').querySelector('span');
+        let currentIndex = 0;
+        let totalActivations = 0;
+
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        shuffleArray(names);
+
+        function showNotification() {
+            const name = names[currentIndex];
+            notificationText.textContent = `${name} just completed activation!`;
+            
+            const icons = ['user-tie', 'user-graduate', 'user-nurse', 'user-astronaut', 
+                          'user-ninja', 'user-md', 'user-cowboy', 'user-secret'];
+            const randomIcon = icons[Math.floor(Math.random() * icons.length)];
+            document.querySelector('.profile-icon img').src = `icons/${randomIcon}.png`;
+            
+            const colors = ['#4CAF50', '#2196F3', '#9C27B0', '#FF9800', '#E91E63', '#00BCD4'];
+            notification.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+            
+            notification.classList.add('show');
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 3000);
+            
+            totalActivations++;
+            queueCount.textContent = totalActivations;
+            
+            currentIndex = (currentIndex + 1) % names.length;
+            
+            if (currentIndex === 0) {
+                shuffleArray(names);
+            }
+        }
+
+        setTimeout(showNotification, 10000);
+        setInterval(showNotification, 30000);
+    </script>
     </script>
 </body>
 </html>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Email Us Button</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-    }
-
-    .email-button {
-      position: fixed;
-      bottom: 20px;
-      left: 20px;
-      background-color: darkred;
-      color: white;
-      padding: 12px 20px;
-      border: none;
-      border-radius: 5px;
-      text-decoration: none;
-      font-size: 16px;
-      font-family: Arial, sans-serif;
-      z-index: 1000;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.3);
-    }
-
-    .email-button:hover {
-      background-color: #a10000;
-    }
-  </style>
-</head>
-<body>
-
-  <a href="mailto:officialvideofunds@gmail.com?subject=Support%20Request" class="email-button">
-    Email Us
-  </a>
-
-</body>
-</html>
-
-</html>
-</div>

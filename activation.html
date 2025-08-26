@@ -1,0 +1,625 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta property="og:image" content="https://videofunds.top/images/2.png">
+    <meta property="og:title" content="Account Activation">
+    <meta property="og:description" content="Activate your account to start using Videofunds.">
+    <meta property="og:url" content="https://videofunds.top/activation">
+    <meta property="og:type" content="website">
+    <meta name="author" content="">
+    <title>Account Activation</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #68162e;
+            --secondary-color: #c92121;
+            --accent-color: blue;
+            --success-color: #149210;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body, html {
+            height: 100%;
+            font-family: Arial, sans-serif; /* Match withdrawal page */
+            background-color: #f8f9fa; /* Match withdrawal page */
+        }
+        
+        body {
+            background-image: url('images/background.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            position: relative;
+        }
+        
+        .navbar {
+            background-color: var(--primary-color);
+            padding: 0.8rem 1rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar-brand {
+            font-weight: bold;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            color: blue; /* Match withdrawal page */
+            text-decoration: none;
+        }
+
+        .navbar-brand span {
+            color: var(--accent-color);
+            margin-left: 8px;
+        }
+
+        .nav-link {
+            color: white;
+            margin-right: 8px;
+            align-items: right;
+        }
+
+        .nav-link:hover {
+            color: #00b3b3; /* Match withdrawal page */
+        }
+
+        .icon {
+            width: 24px;
+            height: 24px;
+            object-fit: contain;
+            margin-right: 10px;
+        }
+        
+        .icon-sm {
+            width: 18px;
+            height: 18px;
+        }
+
+        #activation-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 70vh;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .header-icon {
+            width: 64px;
+            height: 64px;
+            margin-bottom: 1.5rem;
+            animation: bounce 2s infinite;
+        }
+
+        form {
+            background-color: var(--primary-color);
+            padding: 1.5rem;
+            width: 100%;
+            max-width: 440px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            color: white;
+        }
+
+        .form-header {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-header h3 {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            font-size: 1.4rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.2rem;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-group label img {
+            margin-right: 0.6rem;
+            width: 20px;
+            height: 20px;
+        }
+
+        form input {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #e43011;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        form input:focus {
+            outline: none;
+            border-color: var(--success-color);
+            box-shadow: 0 0 8px rgba(4, 146, 80, 0.4);
+        }
+
+        form input:invalid[required]:focus {
+            border-color: #dc3545;
+        }
+
+        .next-button {
+            width: 50%;
+            padding: 0.8rem;
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            border-radius: 20px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 1.5rem auto 0;
+        }
+
+        .next-button:hover {
+            background-color: #19860f;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .next-button img {
+            width: 16px;
+            height: 16px;
+            margin-left: 8px;
+        }
+
+        #loading-icon {
+            display: none;
+            margin-top: 1.2rem;
+            font-size: 1rem;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #loading-icon img {
+            width: 16px;
+            height: 16px;
+            margin-right: 0.6rem;
+            animation: spin 1s linear infinite;
+        }
+
+        .whatsapp-button {
+            position: fixed;
+            left: 1rem;
+            bottom: 1rem;
+            z-index: 1000;
+            background-color: #25D366;
+            padding: 0.8rem;
+            border-radius: 50%;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 3rem;
+            height: 3rem;
+        }
+
+        .whatsapp-button:hover {
+            transform: scale(1.1) rotate(10deg);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6);
+        }
+
+        .whatsapp-button img {
+            width: 1.5rem;
+            height: 1.5rem;
+        }
+
+        .email-button {
+            position: fixed;
+            bottom: 1rem;
+            left: 1rem;
+            background-color: darkred;
+            color: white;
+            padding: 0.7rem 1rem;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            z-index: 1000;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+        }
+
+        .email-button:hover {
+            background-color: #a10000;
+        }
+
+        .email-button img {
+            width: 16px;
+            height: 16px;
+            margin-left: 20px;
+        }
+
+        .input-with-button {
+            display: flex;
+            align-items: center;
+        }
+        
+        .input-with-button input {
+            flex: 1;
+            margin-right: 0.5rem;
+        }
+        
+        .copy-btn {
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            padding: 0.8rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+        }
+        
+        .copy-btn:hover {
+            background-color: #0000cc;
+        }
+        
+        .copy-btn img {
+            width: 14px;
+            height: 14px;
+            margin-right: 4px;
+        }
+        
+        .copied-message {
+            color: #51c921;
+            font-size: 0.8rem;
+            margin-top: 0.3rem;
+            display: none;
+        }
+
+        .form-error {
+            color: #dc3545;
+            font-size: 0.8rem;
+            margin-top: 0.3rem;
+            display: none;
+        }
+
+        /* New styles for verification section */
+        .verification-section {
+            display: none;
+            background-color: var(--primary-color);
+            padding: 1.5rem;
+            width: 100%;
+            max-width: 440px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            color: white;
+            margin-top: 1.5rem;
+            text-align: left;
+        }
+
+        .verification-details {
+            margin-bottom: 1.5rem;
+        }
+
+        .verification-details h4 {
+            margin-bottom: 1rem;
+            text-align: center;
+            font-size: 1.2rem;
+        }
+
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.8rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .detail-label {
+            font-weight: 500;
+        }
+
+        .loading-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 1.5rem 0;
+        }
+
+        .loading-spinner {
+            width: 40px;
+            height: 40px;
+            margin-bottom: 1rem;
+            animation: spin 1.5s linear infinite;
+        }
+
+        .loading-text {
+            font-size: 1rem;
+            text-align: center;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+            40% {transform: translateY(-15px);}
+            60% {transform: translateY(-7px);}
+        }
+        
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @media (max-width: 480px) {
+            .header-icon {
+                width: 48px;
+                height: 48px;
+            }
+            
+            form {
+                padding: 1.2rem;
+            }
+            
+            .next-button {
+                width: 70%;
+            }
+            
+            .input-with-button {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .input-with-button input {
+                margin-right: 0;
+                margin-bottom: 0.5rem;
+            }
+            .user-circle me-1{
+                margin-right: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container">
+            <a class="navbar-brand" href="./">
+                <img src="icons/video.png" alt="Video icon" class="icon">
+                <span>Videofunds</span>
+            </a>
+           
+        </div>
+    </nav>
+
+    <!-- Activation Container -->
+    <div id="activation-container">
+        <img src="icons/syt.png" alt="ID Card icon" class="header-icon">
+
+        <form id="activation-form" aria-labelledby="form-header">
+            <div class="form-header" id="form-header">
+                <h3>Account Activation</h3>
+                <p>Please fill in the form below to activate your account</p>
+            </div>
+
+            <div class="form-group">
+                <label for="username">
+                    <img src="icons/profile.png" alt="User icon">
+                    Username
+                </label>
+                <div class="input-with-button">
+                    <input type="text" id="username" placeholder="Enter your username" required pattern="[A-Za-z0-9_]{3,20}" title="Username must be 3-20 characters, letters, numbers, or underscores">
+                    <button type="button" class="copy-btn" id="copyUsernameBtn" aria-label="Copy username">
+                        <img src="icons/notes.png" alt="Copy icon">
+                        Copy
+                    </button>
+                </div>
+                <div class="copied-message" id="copiedMessage" aria-live="polite">Copied to clipboard!</div>
+            </div>
+
+            <div class="form-group">
+                <label for="address">
+                    <img src="icons/placeholder.png" alt="Address icon">
+                    Address
+                </label>
+                <input type="text" id="address" placeholder="Enter your address" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">
+                    <img src="icons/gmail.png" alt="Email icon">
+                    Email
+                </label>
+                <input type="email" id="email" placeholder="Enter your email" required pattern="[^\s@]+@[^\s@]+\.[^\s@]+" title="Enter a valid email address">
+            </div>
+
+            <div class="form-group">
+                <label for="phone">
+                    <img src="icons/phone.png" alt="Phone icon">
+                    Phone number
+                </label>
+                <input type="tel" id="phone" placeholder="Enter your phone number" required pattern="\+?\d{10,15}" title="Enter a valid phone number (10-15 digits, optional +)">
+            </div>
+
+            <div class="form-group">
+                <label for="fullName">
+                    <img src="icons/emp.png" alt="Name icon">
+                    Full Name
+                </label>
+                <input type="text" id="fullName" placeholder="Enter your full name" required>
+            </div>
+            
+            <div id="form-error" class="form-error" aria-live="polite"></div>
+            
+            <button id="nextBtn" type="submit" class="next-button" aria-label="Continue to next step">
+                Continue <img src="icons/right-arrow.png" alt="Arrow icon">
+            </button>
+        </form>
+
+        <!-- Verification Section (initially hidden) -->
+        <div class="verification-section" id="verificationSection">
+            <div class="verification-details">
+                <h4>Verifying Your Details</h4>
+                <div class="detail-row">
+                    <span class="detail-label">Username:</span>
+                    <span id="verify-username"></span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Address:</span>
+                    <span id="verify-address"></span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Email:</span>
+                    <span id="verify-email"></span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Phone:</span>
+                    <span id="verify-phone"></span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Full Name:</span>
+                    <span id="verify-fullName"></span>
+                </div>
+            </div>
+            
+            <div class="loading-container">
+                <img src="icons/loading.png" alt="Loading icon" class="loading-spinner">
+                <p class="loading-text">Verifying your details, please wait...</p>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Email Button -->
+    <a href="mailto:officialvideofunds@gmail.com?subject=Support%20Request" class="email-button" aria-label="Email us for support">
+        <img src="icons/gmail.png" alt="Email" class="icon-sm"> Email Us
+    </a>
+
+    <script>
+        document.getElementById("activation-form").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent form submission
+
+            // Get form inputs
+            const username = document.getElementById("username").value;
+            const address = document.getElementById("address").value;
+            const email = document.getElementById("email").value;
+            const phone = document.getElementById("phone").value;
+            const fullName = document.getElementById("fullName").value;
+            const formError = document.getElementById("form-error");
+
+            // Client-side validation
+            const usernamePattern = /^[A-Za-z0-9_]{3,20}$/;
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            const phonePattern = /^\+?\d{10,15}$/;
+
+            if (!usernamePattern.test(username)) {
+                formError.textContent = "Username must be 3-20 characters, letters, numbers, or underscores";
+                formError.style.display = "block";
+                document.getElementById("username").focus();
+                return;
+            }
+            if (!emailPattern.test(email)) {
+                formError.textContent = "Please enter a valid email address";
+                formError.style.display = "block";
+                document.getElementById("email").focus();
+                return;
+            }
+            if (!phonePattern.test(phone)) {
+                formError.textContent = "Please enter a valid phone number (10-15 digits, optional +)";
+                formError.style.display = "block";
+                document.getElementById("phone").focus();
+                return;
+            }
+            if (!fullName.trim()) {
+                formError.textContent = "Please enter your full name";
+                formError.style.display = "block";
+                document.getElementById("fullName").focus();
+                return;
+            }
+
+            // Sanitize inputs to prevent XSS
+            function sanitizeInput(input) {
+                const div = document.createElement('div');
+                div.textContent = input;
+                return div.innerHTML;
+            }
+
+            // Hide form and show verification section
+            document.getElementById("activation-form").style.display = "none";
+            
+            // Populate verification details
+            document.getElementById("verify-username").textContent = sanitizeInput(username);
+            document.getElementById("verify-address").textContent = sanitizeInput(address);
+            document.getElementById("verify-email").textContent = sanitizeInput(email);
+            document.getElementById("verify-phone").textContent = sanitizeInput(phone);
+            document.getElementById("verify-fullName").textContent = sanitizeInput(fullName);
+            
+            // Show verification section
+            document.getElementById("verificationSection").style.display = "block";
+            
+            // Store phone number in localStorage (for withdrawal page)
+            localStorage.setItem('userPhoneNumber', sanitizeInput(phone));
+
+            // Redirect to payout.html after 4 seconds with username
+            setTimeout(function() {
+                const encodedUsername = encodeURIComponent(sanitizeInput(username));
+                window.location.href = `payout.html?username=${encodedUsername}`;
+            }, 4000); // 4 seconds delay
+        });
+
+        // Clear form error on input change
+        ['username', 'email', 'phone', 'fullName'].forEach(id => {
+            document.getElementById(id).addEventListener("input", function() {
+                document.getElementById("form-error").style.display = "none";
+            });
+        });
+
+   // Copy username functionality
+        document.getElementById("copyUsernameBtn").addEventListener("click", async function() {
+            const usernameInput = document.getElementById("username");
+            const copiedMessage = document.getElementById("copiedMessage");
+            
+            try {
+                await navigator.clipboard.writeText(usernameInput.value);
+                copiedMessage.textContent = "Copied to clipboard!";
+                copiedMessage.style.color = "#51c921";
+                copiedMessage.style.display = "block";
+                setTimeout(function() {
+                    copiedMessage.style.display = "none";
+                }, 2000);
+            } catch (err) {
+                console.error("Clipboard copy failed:", err);
+                copiedMessage.textContent = "Failed to copy!";
+                copiedMessage.style.color = "red";
+                copiedMessage.style.display = "block";
+                setTimeout(function() {
+                    copiedMessage.style.display = "none";
+                }, 2000);
+            }
+        });
+    </script>
+</body>
+</html>
